@@ -1,11 +1,16 @@
 #include "vec.h"
+#include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-void print(vec* v)
+void ll_printVec(llvec* v)
 {
     printf("[ ");
+    if (ll_sameVec(*v, LL_VEC_UNDEFINED))
+    {
+        printf("UNDEFINED ");
+    }
     for (unsigned int i = 0; i < v->order; i++)
     {
         printf("%f", v->components[i]);
@@ -21,18 +26,18 @@ void print(vec* v)
     printf("]\n");
 }
 
-vec allocate(unsigned int order)
+llvec ll_allocateVec(unsigned int order)
 {
-    vec v;
+    llvec v;
     v.order = order;
     v.components = (float*)malloc(order * sizeof(float));
 
     return v;
 }
 
-vec defaultVector(unsigned int order, float defaultValue)
+llvec ll_defaultVec(unsigned int order, float defaultValue)
 {
-    vec v = allocate(order);
+    llvec v = ll_allocateVec(order);
     for (unsigned int i = 0; i < order; i++)
     {
         v.components[i] = defaultValue;
@@ -40,9 +45,9 @@ vec defaultVector(unsigned int order, float defaultValue)
     return v;
 }
 
-vec newVector(unsigned int order, ...)
+llvec ll_newVec(unsigned int order, ...)
 {
-    vec v = allocate(order);
+    llvec v = ll_allocateVec(order);
     va_list args;
 
     va_start(args, order);
@@ -56,7 +61,28 @@ vec newVector(unsigned int order, ...)
     return v;
 }
 
-vec add(vec a, vec b)
+llvec ll_copyVec(llvec v)
+{
+    return v;
+}
+
+bool ll_sameVec(llvec a, llvec b)
+{
+    if (a.order == b.order)
+    {
+        for (unsigned int i = 0; i < a.order; i++)
+        {
+            if (a.components[i] != b.components[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+llvec ll_addVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
@@ -68,15 +94,109 @@ vec add(vec a, vec b)
     }
     else
     {
-        return newVector(0, NULL);
+        return LL_VEC_UNDEFINED;
     }
 }
-vec sub(vec a, vec b)
+
+llvec ll_subVec(llvec a, llvec b)
 {
+    if (a.order == b.order)
+    {
+        for (unsigned int i = 0; i < a.order; i++)
+        {
+            a.components[i] -= b.components[i];
+        }
+        return a;
+    }
+    else
+    {
+        return LL_VEC_UNDEFINED;
+    }
 }
-vec mul(vec a, vec b)
+
+llvec ll_mulVec(llvec a, llvec b)
 {
+    if (a.order == b.order)
+    {
+        for (unsigned int i = 0; i < a.order; i++)
+        {
+            a.components[i] *= b.components[i];
+        }
+        return a;
+    }
+    else
+    {
+        return LL_VEC_UNDEFINED;
+    }
 }
-/* vec div(vec a, vec b) */
-/* { */
-/* } */
+
+llvec ll_divVec(llvec a, llvec b)
+{
+    if (a.order == b.order)
+    {
+        for (unsigned int i = 0; i < a.order; i++)
+        {
+            a.components[i] /= b.components[i];
+        }
+        return a;
+    }
+    else
+    {
+        return LL_VEC_UNDEFINED;
+    }
+}
+
+llvec ll_scalarAddVec(llvec v, float s)
+{
+    for (unsigned int i; i < v.order; i++)
+    {
+        v.components[i] += s;
+    }
+    return v;
+}
+
+llvec ll_scalarSubVec(llvec v, float s)
+{
+    for (unsigned int i; i < v.order; i++)
+    {
+        v.components[i] -= s;
+    }
+    return v;
+}
+
+llvec ll_scalarMulVec(llvec v, float s)
+{
+    for (unsigned int i; i < v.order; i++)
+    {
+        v.components[i] *= s;
+    }
+    return v;
+}
+
+llvec ll_scalarDivVec(llvec v, float s)
+{
+    for (unsigned int i; i < v.order; i++)
+    {
+        v.components[i] /= s;
+    }
+    return v;
+}
+
+float ll_magVec(llvec v)
+{
+    if (ll_sameVec(v, LL_VEC_UNDEFINED))
+    {
+        return 0.0f;
+    }
+    float squared_sum = 0;
+    for (unsigned int i = 0; i < v.order; i++)
+    {
+        squared_sum += v.components[i] * v.components[i];
+    }
+    return sqrtf(squared_sum);
+}
+
+llvec ll_normVec(llvec v)
+{
+    return ll_scalarDivVec(v, ll_magVec(v));
+}

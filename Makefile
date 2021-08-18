@@ -7,6 +7,7 @@
 CC := gcc
 
 COMPILER_FLAGS := -Wall -g -MMD -MP
+LINKER_FLAGS := -lm
 
 TARGET := llama
 
@@ -28,7 +29,7 @@ DEPENDS := ${shell find ${OBJ_ROOT} -name "*${DEPENDS_EXT}"}
 all: ${TARGET}
 
 ${TARGET}: ${OBJS}
-	${CC} ${OBJS} -o $@
+	${CC} ${OBJS} -o $@ ${LINKER_FLAGS}
 
 -include ${DEPENDS}
 

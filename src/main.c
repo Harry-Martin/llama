@@ -1,13 +1,10 @@
-#include <stdio.h>
-#include <string.h>
-
 #include "vec.h"
+#include <stdio.h>
 
 int main()
 {
-    vec v = vector(1.0f, 2.0f, -3.0f);
-    vec v1 = vector(1.0f, 2.0f, 3.0f);
-    vec v2 = add(v, v1);
-    print(&v2);
+    llvec a = ll_vec(77.0f, 0.0f, 0.0f);
+    llvec b = ll_normVec(a);
+    ll_printVec(&b);
     return 0;
 }
