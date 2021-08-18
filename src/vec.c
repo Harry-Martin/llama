@@ -63,7 +63,12 @@ llvec ll_newVec(unsigned int order, ...)
 
 llvec ll_copyVec(llvec v)
 {
-    return v;
+    llvec copy = ll_allocateVec(v.order);
+    for (unsigned int i = 0; i < copy.order; i++)
+    {
+        copy.components[i] = v.components[i];
+    }
+    return copy;
 }
 
 bool ll_sameVec(llvec a, llvec b)
@@ -86,11 +91,12 @@ llvec ll_addVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
+        llvec a_copy = ll_copyVec(a);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a.components[i] += b.components[i];
+            a_copy.components[i] += b.components[i];
         }
-        return a;
+        return a_copy;
     }
     else
     {
@@ -102,11 +108,12 @@ llvec ll_subVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
+        llvec a_copy = ll_copyVec(a);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a.components[i] -= b.components[i];
+            a_copy.components[i] -= b.components[i];
         }
-        return a;
+        return a_copy;
     }
     else
     {
@@ -118,11 +125,12 @@ llvec ll_mulVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
+        llvec a_copy = ll_copyVec(a);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a.components[i] *= b.components[i];
+            a_copy.components[i] *= b.components[i];
         }
-        return a;
+        return a_copy;
     }
     else
     {
@@ -134,11 +142,12 @@ llvec ll_divVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
+        llvec a_copy = ll_copyVec(a);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a.components[i] /= b.components[i];
+            a_copy.components[i] /= b.components[i];
         }
-        return a;
+        return a_copy;
     }
     else
     {
@@ -148,38 +157,42 @@ llvec ll_divVec(llvec a, llvec b)
 
 llvec ll_scalarAddVec(llvec v, float s)
 {
+    llvec v_copy = ll_copyVec(v);
     for (unsigned int i; i < v.order; i++)
     {
-        v.components[i] += s;
+        v_copy.components[i] += s;
     }
-    return v;
+    return v_copy;
 }
 
 llvec ll_scalarSubVec(llvec v, float s)
 {
+    llvec v_copy = ll_copyVec(v);
     for (unsigned int i; i < v.order; i++)
     {
-        v.components[i] -= s;
+        v_copy.components[i] -= s;
     }
-    return v;
+    return v_copy;
 }
 
 llvec ll_scalarMulVec(llvec v, float s)
 {
+    llvec v_copy = ll_copyVec(v);
     for (unsigned int i; i < v.order; i++)
     {
-        v.components[i] *= s;
+        v_copy.components[i] *= s;
     }
-    return v;
+    return v_copy;
 }
 
 llvec ll_scalarDivVec(llvec v, float s)
 {
-    for (unsigned int i; i < v.order; i++)
+    llvec v_copy = ll_copyVec(v);
+    for (unsigned int i = 0; i < v.order; i++)
     {
-        v.components[i] /= s;
+        v_copy.components[i] /= s;
     }
-    return v;
+    return v_copy;
 }
 
 float ll_magVec(llvec v)
@@ -199,4 +212,18 @@ float ll_magVec(llvec v)
 llvec ll_normVec(llvec v)
 {
     return ll_scalarDivVec(v, ll_magVec(v));
+}
+
+float ll_dotVec(llvec a, llvec b)
+{
+    if (a.order != b.order)
+    {
+        return 0;
+    }
+    float result = 0;
+    for (unsigned int i = 0; i < a.order; i++)
+    {
+        result += (a.components[i] * b.components[i]);
+    }
+    return result;
 }

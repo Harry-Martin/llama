@@ -96,4 +96,9 @@ float ll_magVec(llvec v);
  */
 llvec ll_normVec(llvec v);
 
+/**
+ * return the dot product of vectors `a` and `b`.
+ */
+float ll_dotVec(llvec a, llvec b);
+
 #endif
