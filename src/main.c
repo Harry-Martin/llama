@@ -8,11 +8,11 @@ int main()
     llvec c = ll_vec(0.0f, 0.0f, 1.0f);
     float adotb = ll_dotVec(a, b);
     float adota = ll_dotVec(a, a);
-    ll_printVec(&a);
-    ll_printVec(&b);
-    ll_printVec(&c);
+    ll_printVec(a);
+    ll_printVec(b);
+    ll_printVec(c);
     llvec d = ll_addVec(a, b);
-    ll_printVec(&d);
+    ll_printVec(d);
     printf("%f\n", adota);
     return 0;
 }

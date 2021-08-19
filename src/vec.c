@@ -5,17 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-void ll_printVec(llvec* v)
+void ll_printVec(llvec v)
 {
     printf("[ ");
-    if (ll_sameVec(*v, LL_VEC_UNDEFINED))
+    if (ll_sameVec(v, LL_VEC_UNDEFINED))
     {
         printf("UNDEFINED ");
     }
-    for (unsigned int i = 0; i < v->order; i++)
+    for (unsigned int i = 0; i < v.order; i++)
     {
-        printf("%f", v->components[i]);
-        if (i != v->order - 1)
+        printf("%f", v.components[i]);
+        if (i != v.order - 1)
         {
             printf(", ");
         }
