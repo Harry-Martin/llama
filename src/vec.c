@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void ll_printVec(llvec* v)
 {
@@ -64,10 +65,7 @@ llvec ll_newVec(unsigned int order, ...)
 llvec ll_copyVec(llvec v)
 {
     llvec copy = ll_allocateVec(v.order);
-    for (unsigned int i = 0; i < copy.order; i++)
-    {
-        copy.components[i] = v.components[i];
-    }
+    memcpy(copy.components, v.components, v.order);
     return copy;
 }
 
@@ -91,12 +89,12 @@ llvec ll_addVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
-        llvec a_copy = ll_copyVec(a);
+        llvec out = ll_allocateVec(a.order);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a_copy.components[i] += b.components[i];
+            out.components[i] = a.components[i] + b.components[i];
         }
-        return a_copy;
+        return out;
     }
     else
     {
@@ -125,12 +123,12 @@ llvec ll_mulVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
-        llvec a_copy = ll_copyVec(a);
+        llvec out = ll_allocateVec(a.order);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a_copy.components[i] *= b.components[i];
+            out.components[i] = a.components[i] * b.components[i];
         }
-        return a_copy;
+        return out;
     }
     else
     {
@@ -142,12 +140,12 @@ llvec ll_divVec(llvec a, llvec b)
 {
     if (a.order == b.order)
     {
-        llvec a_copy = ll_copyVec(a);
+        llvec out = ll_allocateVec(a.order);
         for (unsigned int i = 0; i < a.order; i++)
         {
-            a_copy.components[i] /= b.components[i];
+            out.components[i] = a.components[i] / b.components[i];
         }
-        return a_copy;
+        return out;
     }
     else
     {

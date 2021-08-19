@@ -11,6 +11,8 @@ int main()
     ll_printVec(&a);
     ll_printVec(&b);
     ll_printVec(&c);
+    llvec d = ll_addVec(a, b);
+    ll_printVec(&d);
     printf("%f\n", adota);
     return 0;
 }
