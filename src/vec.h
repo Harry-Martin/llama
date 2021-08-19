@@ -104,6 +104,11 @@ llvec ll_normVec(llvec v);
 /**
  * return the dot product of vectors `a` and `b`.
  */
-float ll_dotVec(llvec a, llvec b);
+float ll_dotvec(llvec a, llvec b);
+
+/**
+ * return the angle between two vectors
+ */
+float ll_angleVec(llvec a, llvec b);
 
 #endif

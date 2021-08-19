@@ -230,3 +230,8 @@ float ll_dotVec(llvec a, llvec b)
     }
     return result;
 }
+
+float ll_angleVec(llvec a, llvec b)
+{
+    return acos(ll_dotVec(a, b) / (ll_magVec(a) * ll_magVec(b)));
+}
