@@ -7,6 +7,8 @@
 CC := gcc
 
 COMPILER_FLAGS := -Wall -g -MMD -MP
+#COMPILER_FLAGS := -O3
+
 LINKER_FLAGS := -lm
 
 TARGET := llama
