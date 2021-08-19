@@ -14,5 +14,10 @@ int main()
     llvec d = ll_addVec(a, b);
     ll_printVec(d);
     printf("%f\n", adota);
+
+    ll_freeVec(a);
+    ll_freeVec(b);
+    ll_freeVec(c);
+    ll_freeVec(d);
     return 0;
 }

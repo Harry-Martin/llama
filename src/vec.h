@@ -22,6 +22,11 @@ void ll_printVec(llvec v);
 llvec ll_allocateVec(unsigned int order);
 
 /**
+ * free the heap allocated memory for vector `v`.
+ */
+void ll_freeVec(llvec v);
+
+/**
  * construct a vector of `order` and fill it with `defaultValue` and return it.
  */
 llvec ll_defaultVec(unsigned int order, float defaultValue);

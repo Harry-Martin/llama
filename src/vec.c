@@ -36,6 +36,11 @@ llvec ll_allocateVec(unsigned int order)
     return v;
 }
 
+void ll_freeVec(llvec v)
+{
+    free(v.components);
+}
+
 llvec ll_defaultVec(unsigned int order, float defaultValue)
 {
     llvec v = ll_allocateVec(order);
