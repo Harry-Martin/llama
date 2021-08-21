@@ -22,6 +22,18 @@ All vector features support n-dimensional vectors with one obvious exception, th
         -Angle
         -Cross Product
         
+## Dependencies
+
+        -Make
+        -GNU gcc compiler
+        -Unix style `find` command-line utility
+        -C standard library
+
+
+## Build Instructions
+
+Instructions for how to build the library will be updated once the build system is finalised.
+        
 ## TODO
 
     -Matrix
@@ -42,6 +54,7 @@ All vector features support n-dimensional vectors with one obvious exception, th
         -release / debug 
     -Unit Tests
     -Anything else I've forgotten!...
+   
 
         
         
