@@ -235,3 +235,18 @@ float ll_angleVec(llvec a, llvec b)
 {
     return acos(ll_dotVec(a, b) / (ll_magVec(a) * ll_magVec(b)));
 }
+
+llvec ll_crossVec(llvec a, llvec b)
+{
+    /* NOTE: cross product is only defined for vectors of order 3.*/
+    if (a.order != b.order || a.order != 3)
+    {
+        return LL_VEC_UNDEFINED;
+    }
+    llvec out = ll_allocateVec(3);
+    out.components[0] = a.components[1] * b.components[2] - a.components[2] * b.components[1];
+    out.components[1] = a.components[2] * b.components[0] - a.components[0] * b.components[2];
+    out.components[2] = a.components[0] * b.components[1] - a.components[1] * b.components[0];
+
+    return out;
+}
