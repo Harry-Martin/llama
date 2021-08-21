@@ -5,7 +5,9 @@ Llama is a library, written in C, which provides functionality useful for solvin
 ## Features
 
 ### Vector
+
 All vector features support n-dimensional vectors with one obvious exception, the cross product is only defined for 3-dimensional vectors!
+
         -Addition
         -Subtraction
         -Multiplication (component-wise)
