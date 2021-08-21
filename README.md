@@ -23,6 +23,7 @@ All vector features support n-dimensional vectors with one obvious exception, th
         -Cross Product
         
 ## TODO
+
     -Matrix
         -Addition
         -Subtraction
@@ -30,6 +31,8 @@ All vector features support n-dimensional vectors with one obvious exception, th
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition
+        -Inverse
+        -Transpose
         -Identity
         -Rotation
         -Perspective
