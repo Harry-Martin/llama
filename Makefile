@@ -2,6 +2,11 @@
 # make			# compile to binary
 # make clean	# clean up binaries and objects
 
+# TODO(Harry): make a build directory with /debug and /release subdirectories.
+#							 change `make all` to compile in release mode in the release dir.
+#							 add `make debug` which compiles in release mode
+#							 NOTE: make sure debug dependencies are seperate from release dependencies to prevent corrupt builds.
+
 .PHONY := all clean
 
 CC := gcc
