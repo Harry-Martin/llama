@@ -22,6 +22,14 @@ All vector features support n-dimensional vectors with one obvious exception, th
         -Angle
         -Cross Product
         
+### Matrix
+
+    -Addition
+    -Subtraction
+    -Multiplication (element-wise)
+    -Division (element-wise)
+    -Identity
+    
 ## Dependencies
 
         -Make
@@ -37,15 +45,12 @@ Instructions for how to build the library will be updated once the build system 
 ## TODO
 
     -Matrix
-        -Addition
-        -Subtraction
         -Multiplication
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition
         -Inverse
         -Transpose
-        -Identity
         -Rotation
         -Perspective
         -Orthographic
