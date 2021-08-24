@@ -84,6 +84,7 @@ llmat ll_divMat(llmat A, llmat B);
 llmat ll_dotMat(llmat A, llmat B);
 
 /**
- * Returns the transposition of the matrix `A`. Turns matrix [i x j] into matrix [j x i]*/
+ * Returns the transposition of the matrix `A`. Turns matrix [i x j] into matrix [j x i]
+ */
 llmat ll_transposeMat(llmat m);
 #endif
