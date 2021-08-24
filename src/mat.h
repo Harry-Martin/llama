@@ -66,10 +66,15 @@ llmat ll_subMat(llmat A, llmat B);
 /**
  * Returns the result of element-wise multiplication of matrix `A` and matrix `B`.
  */
-llmat ll_mulMat(llmat A, llmat B);
+llmat ll_elemMulMat(llmat A, llmat B);
 
 /**
  * Returns the result of element-wise division of matrix `A` by matrix `B`.
  */
 llmat ll_divMat(llmat A, llmat B);
+
+/**
+ * Returns the result of matrix multiplication of `A` and `B`.
+*/
+llmat ll_mulMat(llmat A, llmat B);
 #endif

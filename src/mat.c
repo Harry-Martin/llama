@@ -159,7 +159,7 @@ llmat ll_subMat(llmat A, llmat B)
     return out;
 }
 
-llmat ll_mulMat(llmat A, llmat B)
+llmat ll_elemMulMat(llmat A, llmat B)
 {
     if (ll_sameDimMat(A, B) == false)
     {
@@ -196,5 +196,27 @@ llmat ll_divMat(llmat A, llmat B)
         }
     }
 
+    return out;
+}
+
+llmat ll_mulMat(llmat A, llmat B)
+{
+    if (A.columns != B.rows)
+    {
+        return LL_MAT_UNDEFINED;
+    }
+
+    llmat out = ll_defaultMat(A.rows, B.columns, 0.0f);
+
+    for (unsigned int j = 0; j < B.columns; j++)
+    {
+        for (unsigned int i = 0; i < A.rows; i++)
+        {
+            for (unsigned int k = 0; k < A.columns; k++)
+            {
+                out.elements[i][j] += A.elements[i][k] * B.elements[k][j];
+            }
+        }
+    }
     return out;
 }

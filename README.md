@@ -26,6 +26,7 @@ All vector features support n-dimensional vectors with one obvious exception, th
 
     -Addition
     -Subtraction
+    -Multiplication
     -Multiplication (element-wise)
     -Division (element-wise)
     -Identity
@@ -45,7 +46,6 @@ Instructions for how to build the library will be updated once the build system 
 ## TODO
 
     -Matrix
-        -Multiplication
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition
