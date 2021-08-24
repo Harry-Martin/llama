@@ -87,4 +87,16 @@ llmat ll_dotMat(llmat A, llmat B);
  * Returns the transposition of the matrix `A`. Turns matrix [i x j] into matrix [j x i]
  */
 llmat ll_transposeMat(llmat m);
+
+/**
+ * Takes [n x n] matrix `m` and returns a [n-1 x n-1] submatrix containing all elements from `m` but not those in rows 0 and columns `mj`.
+ * NOTE: this function is only defined for [n x n] matrices.
+ */
+llmat ll_newSubMat(llmat m, unsigned int mj);
+
+/**
+ * Return the determinant of the [n x n] matrix `m`.
+ * NOTE: this function is only defineid for [n x n] matrices.
+ */
+float ll_detMat(llmat m);
 #endif

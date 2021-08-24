@@ -28,9 +28,11 @@ All vector features support n-dimensional vectors with one obvious exception, th
     -Subtraction
     -Multiplication
     -Transpose
+    -Submatrix
+    -Determinant
+    -Identity
     -Multiplication (element-wise)
     -Division (element-wise)
-    -Identity
     
 ## Dependencies
 
@@ -47,8 +49,6 @@ Instructions for how to build the library will be updated once the build system 
 ## TODO
 
     -Matrix
-        -Submatrix
-        -Determinant
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition

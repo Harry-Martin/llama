@@ -1,3 +1,4 @@
+#include <float.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -256,4 +257,52 @@ llmat ll_transposeMat(llmat m)
         }
     }
     return out;
+}
+
+llmat ll_newSubMat(llmat m, unsigned int mj)
+{
+    if (m.rows != m.columns) /*function only defined for square matrices*/
+    {
+        return LL_MAT_UNDEFINED;
+    }
+
+    llmat out = ll_allocateMat(m.rows - 1, m.columns - 1);
+
+    for (unsigned int i = 1; i < m.rows; i++)
+    {
+        for (unsigned int j = 0; j < m.columns; j++)
+        {
+            if (j < mj)
+            {
+                out.elements[i - 1][j] = m.elements[i][j];
+            }
+            else
+            {
+                out.elements[i - 1][j] = m.elements[i][j + 1];
+            }
+        }
+    }
+    return out;
+}
+
+float ll_detMat(llmat m)
+{
+    if (m.rows != m.columns) /*function only defined for square matrices*/
+    {
+        return FLT_MAX; /*TODO(harry): come up with a more elegant way to fail*/
+    }
+    if (m.rows == 2)
+    {
+        return m.elements[0][0] * m.elements[1][1] - m.elements[0][1] * m.elements[1][0];
+    }
+    float det = 0;
+    float sign = 1;
+    for (unsigned int j = 0; j < m.columns; j++)
+    {
+        llmat subMatrix = ll_newSubMat(m, j);
+        float subMatrix_det = ll_detMat(subMatrix);
+        det += (sign * (m.elements[0][j] * subMatrix_det));
+        sign *= -1;
+    }
+    return det;
 }
