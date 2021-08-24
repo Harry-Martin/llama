@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "mat.h"
+#include "vec.h"
 
 llmat ll_allocateMat(unsigned int rows, unsigned int columns)
 {
@@ -119,6 +120,25 @@ bool ll_sameDimMat(llmat A, llmat B)
     return A.rows == B.rows && A.columns == B.columns;
 }
 
+bool ll_equalMat(llmat A, llmat B)
+{
+    if (ll_sameDimMat(A, B))
+    {
+        for (unsigned int i = 0; i < A.rows; i++)
+        {
+            for (unsigned int j = 0; j < A.columns; j++)
+            {
+                if (A.elements[i][j] != B.elements[i][j])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
 llmat ll_addMat(llmat A, llmat B)
 {
     if (ll_sameDimMat(A, B) == false)
@@ -216,6 +236,24 @@ llmat ll_dotMat(llmat A, llmat B)
             {
                 out.elements[i][j] += A.elements[i][k] * B.elements[k][j];
             }
+        }
+    }
+    return out;
+}
+
+llmat ll_transposeMat(llmat m)
+{
+    if (ll_equalMat(m, LL_MAT_UNDEFINED))
+    {
+        return m;
+    }
+
+    llmat out = ll_allocateMat(m.columns, m.rows);
+    for (unsigned int i = 0; i < m.rows; i++)
+    {
+        for (unsigned int j = 0; j < m.columns; j++)
+        {
+            out.elements[j][i] = m.elements[i][j];
         }
     }
     return out;

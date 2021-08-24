@@ -54,6 +54,11 @@ llmat ll_copyMat(llmat m);
 bool ll_sameDimMat(llmat A, llmat B);
 
 /**
+ * Returns `true` if Matrix `A` == Matrix `B`. Returns false otherwise.
+ */
+bool ll_equalMat(llmat A, llmat B);
+
+/**
  * Returns the sum of matrix `A` and `B`.
  */
 llmat ll_addMat(llmat A, llmat B);
@@ -77,4 +82,8 @@ llmat ll_divMat(llmat A, llmat B);
  * Returns the result of matrix multiplication of `A` and `B`.
 */
 llmat ll_dotMat(llmat A, llmat B);
+
+/**
+ * Returns the transposition of the matrix `A`. Turns matrix [i x j] into matrix [j x i]*/
+llmat ll_transposeMat(llmat m);
 #endif
