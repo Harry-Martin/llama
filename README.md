@@ -47,6 +47,8 @@ Instructions for how to build the library will be updated once the build system 
 ## TODO
 
     -Matrix
+        -Submatrix
+        -Determinant
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition
