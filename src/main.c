@@ -13,7 +13,7 @@ int main()
         9.0f, 10.0f,
         11.0f, 12.0f);
 
-    llmat C = ll_mulMat(A, B);
+    llmat C = ll_dotMat(A, B);
     ll_printMat(C);
 
     return 0;

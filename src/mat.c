@@ -159,7 +159,7 @@ llmat ll_subMat(llmat A, llmat B)
     return out;
 }
 
-llmat ll_elemMulMat(llmat A, llmat B)
+llmat ll_mulMat(llmat A, llmat B)
 {
     if (ll_sameDimMat(A, B) == false)
     {
@@ -199,7 +199,7 @@ llmat ll_divMat(llmat A, llmat B)
     return out;
 }
 
-llmat ll_mulMat(llmat A, llmat B)
+llmat ll_dotMat(llmat A, llmat B)
 {
     if (A.columns != B.rows)
     {
