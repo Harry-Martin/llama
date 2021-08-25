@@ -259,7 +259,7 @@ llmat ll_transposeMat(llmat m)
     return out;
 }
 
-llmat ll_newSubMat(llmat m, unsigned int mj)
+llmat ll_newSubMat(llmat m, unsigned int mi, unsigned int mj)
 {
     if (m.rows != m.columns) /*function only defined for square matrices*/
     {
@@ -268,18 +268,21 @@ llmat ll_newSubMat(llmat m, unsigned int mj)
 
     llmat out = ll_allocateMat(m.rows - 1, m.columns - 1);
 
-    for (unsigned int i = 1; i < m.rows; i++)
+    unsigned int iOffset = 0;
+    for (unsigned int i = 0; i < out.rows; i++)
     {
-        for (unsigned int j = 0; j < m.columns; j++)
+        if (i == mi)
         {
-            if (j < mj)
+            iOffset = 1;
+        }
+        unsigned int jOffset = 0;
+        for (unsigned int j = 0; j < out.columns; j++)
+        {
+            if (j == mj)
             {
-                out.elements[i - 1][j] = m.elements[i][j];
+                jOffset = 1;
             }
-            else
-            {
-                out.elements[i - 1][j] = m.elements[i][j + 1];
-            }
+            out.elements[i][j] = m.elements[i + iOffset][j + jOffset];
         }
     }
     return out;
@@ -299,7 +302,7 @@ float ll_detMat(llmat m)
     float sign = 1;
     for (unsigned int j = 0; j < m.columns; j++)
     {
-        llmat subMatrix = ll_newSubMat(m, j);
+        llmat subMatrix = ll_newSubMat(m, 0, j);
         float subMatrix_det = ll_detMat(subMatrix);
         det += (sign * (m.elements[0][j] * subMatrix_det));
         sign *= -1;

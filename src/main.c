@@ -10,7 +10,12 @@ int main()
         0.0f, 5.0f, 2.0f, -6.0f,
         -1.0f, 2.0f, 1.0f, 0.0f);
 
-    LOGF(ll_detMat(A));
+    ll_printMat(ll_newSubMat(A, 0, 0));
+    printf("\n");
+    ll_printMat(ll_newSubMat(A, 0, 1));
+    printf("\n");
+    ll_printMat(ll_newSubMat(A, 0, 2));
 
+    LOGF(ll_detMat(A));
     return 0;
 }
