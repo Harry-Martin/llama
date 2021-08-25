@@ -139,6 +139,11 @@ bool ll_equalMat(llmat A, llmat B)
     return false;
 }
 
+bool ll_isSqaureMat(llmat m)
+{
+    return m.rows == m.columns ? true : false;
+}
+
 llmat ll_addMat(llmat A, llmat B)
 {
     if (ll_sameDimMat(A, B) == false)
@@ -261,7 +266,7 @@ llmat ll_transposeMat(llmat m)
 
 llmat ll_newSubMat(llmat m, unsigned int mi, unsigned int mj)
 {
-    if (m.rows != m.columns) /*function only defined for square matrices*/
+    if (!ll_isSqaureMat(m)) /*function only defined for square matrices*/
     {
         return LL_MAT_UNDEFINED;
     }
@@ -290,9 +295,9 @@ llmat ll_newSubMat(llmat m, unsigned int mi, unsigned int mj)
 
 float ll_detMat(llmat m)
 {
-    if (m.rows != m.columns) /*function only defined for square matrices*/
+    if (!ll_isSqaureMat(m)) /*function only defined for square matrices*/
     {
-        return FLT_MAX; /*TODO(harry): come up with a more elegant way to fail*/
+        return 0; /*TODO(harry): come up with a more elegant way to fail*/
     }
     if (m.rows == 2)
     {
@@ -308,4 +313,24 @@ float ll_detMat(llmat m)
         sign *= -1;
     }
     return det;
+}
+
+llmat ll_minorMat(llmat m)
+{
+    if (!ll_isSqaureMat(m))
+    {
+        return LL_MAT_UNDEFINED;
+    }
+
+    llmat out = ll_allocateMat(m.rows, m.columns);
+
+    for (unsigned int i = 0; i < m.rows; i++)
+    {
+        for (unsigned int j = 0; j < m.columns; j++)
+        {
+            out.elements[i][j] = ll_detMat(ll_newSubMat(m, i, j));
+        }
+    }
+
+    return out;
 }

@@ -96,7 +96,18 @@ llmat ll_newSubMat(llmat m, unsigned int mi, unsigned int mj);
 
 /**
  * Return the determinant of the [n x n] matrix `m`.
- * NOTE: this function is only defineid for [n x n] matrices.
+ * NOTE: this function is only defined for [n x n] matrices.
  */
 float ll_detMat(llmat m);
+
+/**
+ * Returns `true` if `m` is a square matrix. Returns `false` otherwise.
+ */
+bool ll_isSqaureMat(llmat m);
+
+/**
+ * Return the minor matrix of the [n x n] matrix `m`.
+ * NOTE: this function is only defined for [n x n] matrices.
+ */
+llmat ll_minorMat(llmat m);
 #endif

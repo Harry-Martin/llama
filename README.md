@@ -31,6 +31,7 @@ All vector features support n-dimensional vectors with one obvious exception, th
     -Submatrix
     -Determinant
     -Identity
+    -Minor matrix
     -Multiplication (element-wise)
     -Division (element-wise)
     
@@ -53,6 +54,8 @@ Instructions for how to build the library will be updated once the build system 
         -Row/Column multiplication
         -Row/Column Addition
         -Inverse
+        -Cofactor matrix
+        -Adjugate
         -Rotation
         -Perspective
         -Orthographic
