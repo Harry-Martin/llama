@@ -106,8 +106,26 @@ float ll_detMat(llmat m);
 bool ll_isSqaureMat(llmat m);
 
 /**
- * Return the minor matrix of the [n x n] matrix `m`.
+ * Return the minor matrix (matrix of determinants) of the [n x n] matrix `m`.
  * NOTE: this function is only defined for [n x n] matrices.
  */
 llmat ll_minorMat(llmat m);
+
+/**
+ * Return the cofactor of the [n x n] matrix `m`.
+ * NOTE: this function is only defined for [n x n] matrices.
+ */
+llmat ll_cofactorMat(llmat m);
+
+/**
+ * Return the adjugate of the [n x n] matrix `m`.
+ * NOTE: this function is only defined for [n x n] matrices.
+ */
+llmat ll_adjugateMat(llmat m);
+
+/**
+ * Return the inverse of the [n x n] matrix `m`.
+ * NOTE: this function is only defined for [n x n] matrices.
+ */
+llmat ll_inverseMat(llmat m);
 #endif

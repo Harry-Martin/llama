@@ -334,3 +334,42 @@ llmat ll_minorMat(llmat m)
 
     return out;
 }
+
+llmat ll_cofactorMat(llmat m)
+{
+    if (!ll_isSqaureMat(m))
+    {
+        return LL_MAT_UNDEFINED;
+    }
+
+    llmat out = ll_minorMat(m);
+
+    int count = 0;
+    for (unsigned int i = 0; i < out.rows; i++)
+    {
+        for (unsigned int j = 0; j < out.columns; j++)
+        {
+            if (count % 2 == 1)
+            {
+                out.elements[i][j] *= -1;
+            }
+            count++;
+        }
+    }
+
+    return out;
+}
+
+llmat ll_adjugateMat(llmat m)
+{
+    if (!ll_isSqaureMat(m))
+    {
+        return LL_MAT_UNDEFINED;
+    }
+    return ll_transposeMat(ll_cofactorMat(m));
+}
+
+llmat ll_inverseMat(llmat m)
+{
+    return ll_divMat(ll_adjugateMat(m), ll_defaultMat(m.rows, m.columns, ll_detMat(m)));
+}

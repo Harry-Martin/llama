@@ -9,7 +9,7 @@ int main()
         2.0f, 0.0f, -2.0f,
         0.0f, 1.0f, 1.0f);
 
-    ll_printMat(ll_minorMat(A));
+    ll_printMat(ll_inverseMat(A));
 
     return 0;
 }
