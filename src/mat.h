@@ -36,7 +36,7 @@ llmat ll_defaultMat(unsigned int rows, unsigned int columns, float defaultValue)
 /**
  * Returns a [`rows` x `columns`] matrix populated with the rows*columns arugments that follow.
  */
-llmat ll_matrix(unsigned int rows, unsigned int columns, ...);
+llmat ll_mat(unsigned int rows, unsigned int columns, ...);
 
 /**
  * Returns a [`dimension x dimension`] identity matrix.
@@ -128,4 +128,5 @@ llmat ll_adjugateMat(llmat m);
  * NOTE: this function is only defined for [n x n] matrices.
  */
 llmat ll_inverseMat(llmat m);
+
 #endif

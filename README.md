@@ -37,8 +37,13 @@ All vector features support n-dimensional vectors with one obvious exception, th
     -Inverse
     -Multiplication (element-wise)
     -Division (element-wise)
-    
+
+### Utilties
+
+    -Rotation Matrix (3x3)
+
 ## Dependencies
+
 
         -Make
         -GNU gcc compiler
@@ -56,7 +61,6 @@ Instructions for how to build the library will be updated once the build system 
         -Row/Column switching
         -Row/Column multiplication
         -Row/Column Addition
-        -Rotation
         -Perspective
         -Orthographic
     -Quarternion

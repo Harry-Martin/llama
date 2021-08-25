@@ -116,4 +116,5 @@ float ll_angleVec(llvec a, llvec b);
  * NOTE: the cross product is only defined for vectors of order 3.
  */
 llvec ll_crossVec(llvec a, llvec b);
+
 #endif

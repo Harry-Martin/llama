@@ -33,6 +33,10 @@ void ll_freeMat(llmat m)
 
 void ll_printMat(llmat m)
 {
+    if (ll_equalMat(m, LL_MAT_UNDEFINED))
+    {
+        printf("| UNDEFINED |\n");
+    }
     for (unsigned int i = 0; i < m.rows; i++)
     {
         printf("| ");
@@ -59,7 +63,7 @@ llmat ll_defaultMat(unsigned int rows, unsigned int columns, float defaultValue)
     return m;
 }
 
-llmat ll_matrix(unsigned int rows, unsigned int columns, ...)
+llmat ll_mat(unsigned int rows, unsigned int columns, ...)
 {
     llmat m = ll_allocateMat(rows, columns);
     va_list args;
@@ -371,5 +375,9 @@ llmat ll_adjugateMat(llmat m)
 
 llmat ll_inverseMat(llmat m)
 {
+    if (ll_detMat(m) == 0.0f)
+    {
+        return LL_MAT_UNDEFINED;
+    }
     return ll_divMat(ll_adjugateMat(m), ll_defaultMat(m.rows, m.columns, ll_detMat(m)));
 }
