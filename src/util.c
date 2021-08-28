@@ -74,3 +74,23 @@ void ll_printMat(llmat m)
     }
 }
 
+llmat ll_vecToMat(llvec v)
+{
+    llmat M = ll_allocateMat(1, v.order);
+    memcpy(M.elements[0], v.components, v.order * sizeof(float));
+
+    return M;
+}
+
+llvec ll_matToVec(llmat M)
+{
+    if (M.rows != 1)
+    {
+        return LL_VEC_UNDEFINED;
+    }
+
+    llvec v = ll_allocateVec(M.columns);
+    memcpy(v.components, M.elements[0], M.columns * sizeof(float));
+
+    return v;
+}
