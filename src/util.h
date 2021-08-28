@@ -62,4 +62,14 @@ llvec ll_matToVec(llmat M);
  */
 llvec ll_vecDotMat(llvec v, llmat M);
 
+/**
+ * Returns an orthographic projection matrix. `left` `right` `bottom` `top` `near` `far` define the clipping planes
+ */
+llmat ll_ortho(float left, float right, float bottom, float top, float near, float far);
+
+/**
+ * Returns a perspective projection matrix. `fov`(in radians) `near` `far` define the clipping planes
+ */
+llmat ll_persp(float fov, float near, float far);
+
 #endif /* LL_UTIL_H */

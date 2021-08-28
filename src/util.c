@@ -113,5 +113,29 @@ llvec ll_rotateVec(llvec v, float x, float y, float z)
         return LL_VEC_UNDEFINED;
     }
 
-    return ll_matToVec(ll_rotateMat(ll_vecToMat(v), x, y, z)); 
+    return ll_matToVec(ll_rotateMat(ll_vecToMat(v), x, y, z));
+}
+
+llmat ll_ortho(float left, float right, float bottom, float top, float near, float far)
+{
+    llmat out = ll_mat(4, 4,
+        2.0f / (right - left), 0.0f, 0.0f, -((right + left) / (right - left)),
+        0.0f, 2.0f / (top - bottom), 0.0f, -((top + bottom) / (top - bottom)),
+        0.0f, 0.0f, -2.0f / (far - near), -((far + near) / (far - near)),
+        0.0f, 0.0f, 0.0f, 1.0f);
+
+    return out;
+}
+
+llmat ll_persp(float fov, float near, float far)
+{
+    float S = 1 / (tanf(fov/2));
+
+    llmat out = ll_mat(4, 4,
+        S, 0.0f, 0.0f, 0.0f,
+        0.0f, S, 0.0f, 0.0f,
+        0.0f, 0.0f, -(far / far - near), -1.0f,
+        0.0f, 0.0f, -(far * near)/(far - near), 0.0f);
+
+    return out;
 }
