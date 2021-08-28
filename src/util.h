@@ -70,6 +70,6 @@ llmat ll_ortho(float left, float right, float bottom, float top, float near, flo
 /**
  * Returns a perspective projection matrix. `fov`(in radians) `near` `far` define the clipping planes
  */
-llmat ll_persp(float fov, float near, float far);
+llmat ll_persp(float fov, float aspect, float near, float far);
 
 #endif /* LL_UTIL_H */

@@ -127,15 +127,19 @@ llmat ll_ortho(float left, float right, float bottom, float top, float near, flo
     return out;
 }
 
-llmat ll_persp(float fov, float near, float far)
+llmat ll_persp(float fov, float aspect, float near, float far)
 {
-    float S = 1 / (tanf(fov/2));
+    
+    float top = tanf(fov / 2) * near;
+    float bottom = -top;
+    float left = bottom * aspect;
+    float right = top * aspect;
 
     llmat out = ll_mat(4, 4,
-        S, 0.0f, 0.0f, 0.0f,
-        0.0f, S, 0.0f, 0.0f,
-        0.0f, 0.0f, -(far / far - near), -1.0f,
-        0.0f, 0.0f, -(far * near)/(far - near), 0.0f);
+        (2 * near) / (right - left), 0.0f, (right + left) / (right - left), 0.0f,
+        0.0f, (2 * near) / (top - bottom), (top + bottom) / (top - bottom), 0.0f,
+        0.0f, 0.0f, -(far + near) / (far - near), -(2 * far * near) / (far - near),
+        0.0f, 0.0f, -1.0f, 0.0f);
 
     return out;
 }
