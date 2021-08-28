@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "mat.h"
 #include "util.h"
 
 llmat ll_rotationMat(float x, float y, float z)
@@ -27,12 +28,6 @@ llmat ll_rotationMat(float x, float y, float z)
     llmat out = ll_dotMat(ll_dotMat(rotZ, rotY), rotX);
 
     return out;
-}
-
-llmat ll_rotateMat(llmat m, float x, float y, float z)
-{
-    llmat R = ll_rotationMat(x, y, z);
-    return ll_dotMat(m, R);
 }
 
 void ll_printVec(llvec v)
@@ -93,4 +88,30 @@ llvec ll_matToVec(llmat M)
     memcpy(v.components, M.elements[0], M.columns * sizeof(float));
 
     return v;
+}
+
+llvec ll_vecDotMat(llvec v, llmat M)
+{
+    if (v.order != M.rows)
+    {
+        return LL_VEC_UNDEFINED;
+    }
+
+    return ll_matToVec(ll_dotMat(ll_vecToMat(v), M));
+}
+
+llmat ll_rotateMat(llmat m, float x, float y, float z)
+{
+    llmat R = ll_rotationMat(x, y, z);
+    return ll_dotMat(m, R);
+}
+
+llvec ll_rotateVec(llvec v, float x, float y, float z)
+{
+    if (v.order != 4)
+    {
+        return LL_VEC_UNDEFINED;
+    }
+
+    return ll_matToVec(ll_rotateMat(ll_vecToMat(v), x, y, z)); 
 }
