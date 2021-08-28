@@ -1,22 +1,30 @@
 #include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "util.h"
 
-
 llmat ll_rotationMat(float x, float y, float z)
 {
-    float cosx = cosf(x);
-    float cosy = cosf(y);
-    float cosz = cosf(z);
-    float sinx = sinf(x);
-    float siny = sinf(y);
-    float sinz = sinf(z);
+    llmat rotX = ll_mat(4, 4,
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, cosf(x), -sinf(x), 0.0f,
+        0.0f, sinf(x), cosf(x), 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f);
 
-    llmat out = ll_mat(3, 3,
-        cosx * cosy * cosz - sinx * sinz, -cosx * cosy * sinz - sinx * cosz, cosx * siny,
-        sinx * cosy * cosz + cosx * sinz, -sinx * cosy * sinz + cosx * cosz, sinx * siny,
-        -siny * cosz, siny * sinz, cosy);
+    llmat rotY = ll_mat(4, 4,
+        cosf(y), 0.0f, sinf(y), 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        -sinf(y), 1.0f, cosf(y), 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f);
+
+    llmat rotZ = ll_mat(4, 4,
+        cosf(z), -sinf(z), 0.0f, 0.0f,
+        sinf(z), cosf(z), 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f);
+
+    llmat out = ll_dotMat(ll_dotMat(rotZ, rotY), rotX);
 
     return out;
 }
