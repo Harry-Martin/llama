@@ -16,4 +16,15 @@ llmat ll_rotationMat(float x, float y, float z);
  */
 llmat ll_rotateMat(llmat m, float x, float y, float z);
 
+
+/**
+ * print vector, `v`, to the standard output stream using printf.
+ */
+void ll_printVec(llvec v);
+
+
+/**
+ * Print out a matrix to the standard output stream using printf().
+ */
+void ll_printMat(llmat m);
 #endif /* LL_UTIL_H */

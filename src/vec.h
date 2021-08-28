@@ -12,11 +12,6 @@ typedef struct
 #define LL_VEC_UNDEFINED ((llvec) { 0, NULL })
 
 /**
- * print vector, `v`, to the standard output stream using printf.
- */
-void ll_printVec(llvec v);
-
-/**
  * allocate the memory for a vector with `order` number of components.
  */
 llvec ll_allocateVec(unsigned int order);

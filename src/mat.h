@@ -24,11 +24,6 @@ llmat ll_allocateMat(unsigned int rows, unsigned int columns);
 void ll_freeMat(llmat m);
 
 /**
- * Print out a matrix to the standard output stream using printf().
- */
-void ll_printMat(llmat m);
-
-/**
  * Construct a [`rows` x `columns`] matrix and fill it with `defaultValue`.
  */
 llmat ll_defaultMat(unsigned int rows, unsigned int columns, float defaultValue);

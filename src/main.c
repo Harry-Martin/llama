@@ -7,6 +7,8 @@
 
 int main()
 {
+    /* EXAMPLE USEAGE */
+
     /* create a matrix */
     llmat A = ll_mat(3, 3, /* [3 x 3] matrix */
         1.0f, 2.0f, 3.0f,

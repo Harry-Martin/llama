@@ -31,23 +31,6 @@ void ll_freeMat(llmat m)
     free(m.elements);
 }
 
-void ll_printMat(llmat m)
-{
-    if (ll_equalMat(m, LL_MAT_UNDEFINED))
-    {
-        printf("| UNDEFINED |\n");
-    }
-    for (unsigned int i = 0; i < m.rows; i++)
-    {
-        printf("| ");
-        for (unsigned int j = 0; j < m.columns; j++)
-        {
-            printf("%6.*f ", 2, m.elements[i][j]);
-        }
-        printf("| \n");
-    }
-}
-
 llmat ll_defaultMat(unsigned int rows, unsigned int columns, float defaultValue)
 {
     llmat m = ll_allocateMat(rows, columns);
