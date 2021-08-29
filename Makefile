@@ -67,6 +67,8 @@ ${SHARED_OBJ}:
 
 install: ${SHARED_LIB}
 	cp ${SHARED_LIB} /usr/lib
+	mkdir /usr/include/llama
+	cp include/*.h /usr/include/llama
 
 clean: 
 	rm -f ${STATIC_LIB} ${SHARED_LIB}
@@ -76,6 +78,7 @@ clean:
 
 example: example/example.o ${SHARED_LIB}
 	${CC}  $< -o example/example -L. -lllama -lm
+
 
 
 
