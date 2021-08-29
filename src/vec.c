@@ -1,10 +1,11 @@
-#include "vec.h"
-#include "mat.h"
 #include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "../include/vec.h"
+#include "../include/mat.h"
 
 llvec ll_allocateVec(unsigned int order)
 {

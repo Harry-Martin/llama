@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "mat.h"
-#include "util.h"
+#include "../include/mat.h"
+#include "../include/util.h"
 
 llmat ll_rotationMat(float x, float y, float z)
 {

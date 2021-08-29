@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "mat.h"
+#include "../include/mat.h"
 
 llmat ll_allocateMat(unsigned int rows, unsigned int columns)
 {

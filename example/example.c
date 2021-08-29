@@ -1,8 +1,8 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "llama.h"
-#include "util.h"
+#include "../include/llama.h"
+#include "../include/util.h"
 
 int main()
 {
