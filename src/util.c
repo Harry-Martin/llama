@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../include/mat.h"
@@ -129,7 +130,7 @@ llmat ll_ortho(float left, float right, float bottom, float top, float near, flo
 
 llmat ll_persp(float fov, float aspect, float near, float far)
 {
-    
+
     float top = tanf(fov / 2) * near;
     float bottom = -top;
     float left = bottom * aspect;
@@ -142,4 +143,25 @@ llmat ll_persp(float fov, float aspect, float near, float far)
         0.0f, 0.0f, -1.0f, 0.0f);
 
     return out;
+}
+
+float* ll_matToFloats(llmat M)
+{
+    float* data = (float*)malloc(M.rows * M.columns * sizeof(float));
+    float* cursor = data;
+    for (unsigned int i = 0; i < M.rows; i++)
+    {
+        memcpy(cursor, M.elements[i], M.columns * sizeof(float));
+        cursor += M.columns;
+    }
+    
+    return data;
+}
+
+float* ll_vecToFloats(llvec v)
+{
+    float* data = (float*)malloc(v.order * sizeof(float));
+    memcpy(data, v.components, v.order * sizeof(float));
+
+    return data;
 }

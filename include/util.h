@@ -72,4 +72,14 @@ llmat ll_ortho(float left, float right, float bottom, float top, float near, flo
  */
 llmat ll_persp(float fov, float aspect, float near, float far);
 
+/**
+ * Return a pointer to a contiguous block of memory which represents the matrix data.
+ */
+float* ll_matToFloats(llmat M);
+
+/**
+ * Return a pointer to a contiguous block of memory which represents the vector data.
+ */
+float* ll_vecToFloats(llvec v);
+
 #endif /* LL_UTIL_H */

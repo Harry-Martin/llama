@@ -6,6 +6,18 @@
 
 int main()
 {
+    llvec testv = ll_vec(1.0f, 2.0f, 3.0f, 4.0f, 5.0f);
+    llmat testm = ll_mat(4, 5,
+            1.0f,2.0f, 3.0f, 4.0f,
+            1.0f,2.0f, 3.0f, 4.0f,
+            1.0f,2.0f, 3.0f, 4.0f,
+            1.0f,2.0f, 3.0f, 4.0f,
+            1.0f,2.0f, 3.0f, 4.0f);
+    float * data = ll_matToFloats(testm);
+    for(unsigned int i = 0; i < testm.rows * testm.columns; i++)
+    {
+        LOGF(data[i]);
+    }
     llmat proj = ll_persp(RADIANS(90.0f), 1.0f, 1.0f, 4.0f);
     llvec p;
     for (float i = 0.0f; i > -4.0f; i -= 0.4f)
