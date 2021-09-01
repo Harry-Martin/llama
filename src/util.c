@@ -8,26 +8,37 @@
 
 llmat ll_rotationMat(float x, float y, float z)
 {
-    llmat rotX = ll_mat(4, 4,
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, cosf(x), -sinf(x), 0.0f,
-        0.0f, sinf(x), cosf(x), 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+    float cosx = cosf(x);
+    float sinx = sinf(x);
+    float cosy = cosf(y);
+    float siny = sinf(y);
+    float cosz = cosf(z);
+    float sinz = sinf(z);
+    llmat out = ll_mat(4,4,
+            cosy*cosz, -cosx*sinz + sinx*siny*cosz, sinx*sinz + cosx*siny*cosz, 0.0f,
+            cosy*sinz, cosx*cosz + sinx*siny*sinz, -sinx*cosz + cosx*siny*sinz, 0.0f,
+            -siny, sinx*cosy, cosx*cosy, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f);
+    return out;
+}
 
-    llmat rotY = ll_mat(4, 4,
-        cosf(y), 0.0f, sinf(y), 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        -sinf(y), 1.0f, cosf(y), 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+llmat ll_translationMat(float x, float y, float z)
+{
+    llmat out = ll_identityMat(4);
+    out.elements[0][3] = x;
+    out.elements[1][3] = y;
+    out.elements[2][3] = z;
+    
+    return out;
+}
 
-    llmat rotZ = ll_mat(4, 4,
-        cosf(z), -sinf(z), 0.0f, 0.0f,
-        sinf(z), cosf(z), 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
-
-    llmat out = ll_dotMat(ll_dotMat(rotZ, rotY), rotX);
-
+llmat ll_scaleMat(float x, float y, float z)
+{
+    llmat out = ll_identityMat(4);
+    out.elements[0][0] = x;
+    out.elements[1][1] = y;
+    out.elements[2][2] = z;
+    
     return out;
 }
 

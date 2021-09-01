@@ -9,11 +9,19 @@
  * NOTE: The rotations are defined by XYZ where X, Y, and Z are matrices which define a rotation in their corresponding axis. In general matrix multiplication is not commutative so this order is important to keep in mind.
  */
 llmat ll_rotationMat(float x, float y, float z);
-
-/**
- * Macro to call ll_rotationMat with vector `v` instead of 3 floats.
- */
 #define ll_vecRotationMat(v) ll_rotationMat(v.components[0], v.components[1], v.components[2])
+
+/*
+ * Return a 4x4 translation matrix where floats `x` `y` `z` represent a translation in the corresponding axis
+ */
+llmat ll_translationMat(float x, float y, float z);
+#define ll_vecTranslationMat(v) ll_translationMat(v.components[0], v.components[1], v.components[2])
+
+/*
+ * Return a 4x4 scale matrix where floats `x` `y` `z` represent a scale factor in the corresponding axis
+ */
+llmat ll_scaleMat(float x, float y, float z);
+#define ll_vecScaleMat(v) ll_scaleMat(v.components[0], v.components[1], v.components[2])
 
 /**
  * Return a matrix which has been multiplied by a rotation matrix defined by rotations `x` `y` `z` about each corresponding axis
