@@ -128,8 +128,12 @@ llvec ll_rotateVec(llvec v, float x, float y, float z)
     return ll_matToVec(ll_rotateMat(ll_vecToMat(v), x, y, z));
 }
 
-llmat ll_ortho(float left, float right, float bottom, float top, float near, float far)
+llmat ll_ortho(float height, float aspect, float near, float far)
 {
+    float top = height/2;
+    float bottom = -top;
+    float left = bottom * aspect;
+    float right = top * aspect;
     llmat out = ll_mat(4, 4,
         2.0f / (right - left), 0.0f, 0.0f, -((right + left) / (right - left)),
         0.0f, 2.0f / (top - bottom), 0.0f, -((top + bottom) / (top - bottom)),
